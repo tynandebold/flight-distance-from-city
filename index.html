@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://unpkg.com/d3@4"></script>
+  <script src="https://unpkg.com/d3-geo-projection"></script>
+  <script src="https://unpkg.com/versor"></script>
+  <script src="https://unpkg.com/d3-inertia"></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="visual">
+    <p>Flight times and distances from <select name="airports">
+        <option value="copenhagen" selected>Copenhagen</option>
+        <option value="hongkong">Hong Kong</option>
+        <option value="newyork">New York</option>
+      </select>
+      airport.
+    </p>
+    <svg>
+      <g id="map"></g>
+    </svg>
+  </div>
+  <script src="./index.js"></script>
+</body>

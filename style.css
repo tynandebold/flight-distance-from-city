@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+}
+
+.visual {
+  margin: 0 auto;
+}
+
+svg {
+  cursor: move;
+  /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+  margin: 0 auto;
+}
+
+svg.dragging {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.ranges path.hover {
+  fill: red;
+  fill-opacity: 0.4;
+  stroke: black;
+  stroke-width: 1;
+  stroke-dasharray: 1;
+}
+
+.ranges path {
+  fill: white;
+  fill-opacity: 0.01;
+  stroke: #000;
+  stroke-dasharray: 5 5;
+  stroke-width: 0.5;
+}
+
+path.location {
+  fill: white;
+  stroke: black;
+}
+
+text {
+  font-family: sans-serif;
+}
+
+#title {
+  font-weight: bold;
+  font-size: 19px;
+}
+
+#legend text {
+  font-family: monospace;
+}
+
+#legend {
+  cursor: pointer;
+}
+
+#legend rect {
+  fill: transparent;
+}
+
+#legend .hover rect {
+  stroke: #eee;
+  fill: white;
+  fill-opacity: 0.7;
+}
+
+#legend .hover text {
+  fill: #e00003;
+}
+
+#countries {
+  fill: #d1d1d1;
+  stroke: #303030;
+  stroke-width: 0.5;
+}

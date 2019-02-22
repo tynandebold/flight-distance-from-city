@@ -80,7 +80,13 @@ text {
 }
 
 #countries {
-  fill: #d1d1d1;
-  stroke: #303030;
+  fill: #e5e5e5;
+  stroke: #888;
+  stroke-width: 1;
+}
+
+.outline {
+  fill: #fafafa;
+  stroke: #aaa;
   stroke-width: 0.5;
 }

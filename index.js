@@ -128,14 +128,15 @@
 
   // svg
   render = function () {
-    var width = Math.min(960, window.innerWidth),
-      height = Math.min(600, window.innerHeight),
-      margin = 25;
-    if (width < 400) // en petit écran, essayer de passer sous les liens
-    {
+    var width = Math.min(960, window.innerWidth);
+    var height = Math.min(600, window.innerHeight);
+    var margin = 25;
+
+    if (width < 400) {
       height += 100;
       margin = 10;
     }
+
     projection.fitExtent([[(width - height) / 2 - 2 * margin, margin * 2], [width - margin, height - margin]], {
       type: "Sphere"
     });

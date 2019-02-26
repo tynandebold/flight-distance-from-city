@@ -82,6 +82,7 @@
     .append('g')
     .attr('transform', (d, i) => `translate(${[0, i * 20 + 60]})`)
     .on('mouseover click', d => {
+      console.log(ranges);
       hover = d.properties.name;
       ranges.classed('hover', d => d.properties.name == hover);
       legends.classed('hover', d => d.properties.name == hover);

@@ -32,7 +32,7 @@ svg.dragging {
   fill-opacity: 0.4;
   stroke: black;
   stroke-width: 1;
-  stroke-dasharray: 1;
+  stroke-dasharray: 3 3;
 }
 
 .ranges path {

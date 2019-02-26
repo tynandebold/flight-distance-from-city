@@ -1,7 +1,7 @@
 (function () {
   var location;
   var rotation;
-  var ranges;
+  var range, ranges;
   
   function render() {
     var width = Math.min(960, window.innerWidth);
@@ -36,8 +36,6 @@
     .append('path')
     .attr('id', 'countries');
 
-  var g = svg.append('g').attr('class', 'ranges');
-
   d3.queue()
     .defer(d3.json, 'countries.geojson')
     .await((err, world) => {
@@ -61,7 +59,9 @@
   
     flightTimes = flightTimes.sort((a, b) => a - b);
   
-    ranges = g.selectAll('path')
+    ranges = svg.append('g')
+      .classed('ranges', true)
+      .selectAll('path')
       .data(flightTimes.map(d => {
         var c = d3.geoCircle()
           .center(location)
@@ -71,10 +71,9 @@
         return c;
       }));
 
-    ranges
+      range = ranges
       .enter()
       .append('path')
-      .classed('ranges', true)
       .attr("id", (d, i) => "d" + i)
 
     ranges.exit().remove();
@@ -84,7 +83,7 @@
       .datum({ type: "Point", coordinates: location });
 
     projection.rotate(rotation);
-    // projection.translate([550, 250]);
+    projection.translate([550, 250]);
   }
 
   location = [12.5683, 55.6761];
@@ -99,7 +98,7 @@
 
   update(flightTimes, location, rotation);
 
-  var hover = 0;
+  var hover;
 
   // legend code
   var legends = svg.append('g')
@@ -110,10 +109,8 @@
     .append('g')
     .attr('transform', (d, i) => `translate(${[0, i * 20 + 60]})`)
     .on('mouseover click', d => {
-      console.log(d.properties.name == hover, d.properties.name, hover);
-      
       hover = d.properties.name;
-      ranges.classed('hover', d => d.properties.name == hover);
+      range.classed('hover', d => d.properties.name == hover);
       legends.classed('hover', d => d.properties.name == hover);
     });
 
@@ -124,7 +121,7 @@
 
   var f = d3.formatLocale({ thousands: ",", grouping: [3] }).format(" >6,.2r");
   legends.append('text')
-    .text(d => `${f(d.range)} miles - ${d.name}`)
+    .text(d => `${f(d.range)} miles - ${d.name}`);
 
   d3.geoInertiaDrag(svg, render, projection);
   d3.interval(render, 500);

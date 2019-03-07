@@ -1,27 +1,49 @@
 <!DOCTYPE html>
 <head>
-  <meta charset="utf-8">
-  <script src="https://unpkg.com/d3@4"></script>
-  <script src="https://unpkg.com/d3-geo-projection"></script>
-  <script src="https://unpkg.com/versor"></script>
-  <script src="https://unpkg.com/d3-inertia"></script>
-  <script src="https://d3js.org/topojson.v1.min.js"></script>
-  <link rel="stylesheet" href="./style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Flight times from airports</title>
+  <link
+    rel="shortcut icon"
+    type="image/x-icon"
+    href="//tynandebold.com/assets/dev/favicon.ico"
+  />
+  <script src="//unpkg.com/d3@4"></script>
+  <script src="//unpkg.com/d3-geo-projection"></script>
+  <script src="//unpkg.com/versor"></script>
+  <script src="//unpkg.com/d3-inertia"></script>
+  <script src="//d3js.org/topojson.v1.min.js"></script>
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
   <div class="visual">
-    <p>Flight times and distances from <select name="airports">
+    <h2>
+      Flight times and distances from
+      <select name="airports">
         <option value="copenhagen" selected>Copenhagen</option>
         <option value="hongkong">Hong Kong</option>
         <option value="newyork">New York</option>
       </select>
       airport.
-    </p>
+    </h2>
     <svg>
-      <!-- <g id="map"></g> -->
+      <filter id="dropshadow" height="130%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="5" />
+        <feOffset dx="0" dy="0" result="offsetblur" />
+        <feComponentTransfer>
+          <feFuncA type="linear" slope="1" />
+          <feFuncR type="discrete" tableValues="0.2" />
+          <feFuncG type="discrete" tableValues="0.2" />
+          <feFuncB type="discrete" tableValues="0.2" />
+        </feComponentTransfer>
+        <feMerge>
+          <feMergeNode />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
     </svg>
   </div>
-  <!-- <script src="./index.js"></script> -->
-  <script src="./index-2.js"></script>
+  <script src="./index.js"></script>
 </body>
